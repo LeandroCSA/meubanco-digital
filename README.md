@@ -34,3 +34,94 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+npm install react-icons --save
+
+npm install lodash
+npm i --save-dev @types/lodash
+npm install json2csv
+npm i --save-dev @types/json2csv
+
+## This project is created using:
+
+- [x] Monorepo
+- [x] Lerna
+- [x] Design System
+- [x] NextJs (SSR)
+- [ ] Hooks
+- [ ] Redux Hooks
+- [x] Storybook
+- [x] NestJs
+- [x] Graphql
+
+## Future Features
+
+- Home (List products)
+- Detail products
+- Recommended products
+- Cart
+- Login / Register
+- Admin (Seller)
+- Profile (Buyer)
+- Contact Us
+- Message between Seller and Buyer
+- Ratings about the Seller
+- Dashboard for Sellers
+- Notifications
+- Favorites
+- Pwa
+- Firebase or storage
+- Socket.io
+- App
+- SSR
+
+## Sitemap
+
+```
+    ├── Home
+    │
+    ├── Social Media Links
+    │   ├── Twitter
+    │   ├── Instagram
+    │   └── Facebook
+    │
+    ├── Shop Categories
+    │   ├── Mens
+    │   │   ├── T-Shirts
+    │   │   └── Caps
+    │   │
+    │   ├── Womans
+    │   │
+    │   │
+    │   └── News
+    │       └── Any
+    │
+    ├── About Us
+    │   └── Out Story
+    │
+    ├── Contact
+    │   ├── Info/Form
+    │   ├── Terms
+    │   └── FAQ
+    │
+    ├── Account
+    │   ├── Profile
+    │   ├── Payment Methods
+    │   ├── Saved Address
+    │   ├── Order History
+    │   └── Password
+    │
+    ├── Forms
+    │   ├── Login
+    │   ├── Register
+    │   ├── Forgot Password
+    │   └── Contact
+    │
+    └── Cart / Checkout
+        ├── Cart Overview
+        ├── Shipping Address
+        ├── Billing Details
+        ├── Payment Method
+        └── Order Summary
+```

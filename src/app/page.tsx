@@ -1,101 +1,89 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
+import useAuthHandler from "@/hooks/useAuthHandler";
 
-export default function Home() {
+export default function Login() {
+  const { handleLogin, isLoading, error } = useAuthHandler();
+  const [formData, setFormData] = useState({ cpf: "", password: "" });
+
+  // Atualiza os valores dos campos
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleLogin(formData.cpf, formData.password);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="flex flex-col md:flex-row min-h-screen w-full bg-gray-100 dark:bg-gray-900">
+      {/* Seção de imagem - visível apenas em telas médias e grandes */}
+      <div className="hidden md:flex md:w-1/2 lg:w-3/5 bg-gradient-to-br from-[#01D2C7] to-[#74C365] items-center justify-center">
+        {/* <Image
+          src="/login-illustration.svg"
+          alt="Ilustração de Login"
+          width={500}
+          height={500}
+          className="max-w-full h-auto"
+        /> */}
+      </div>
+
+      {/* Seção de login */}
+      <div className="flex flex-1 flex-col items-center justify-center bg-slate-100 dark:bg-gray-800 p-8 md:p-0">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
+          src="/logo.svg"
+          alt="Logo MeuBanco Digital"
+          width={150}
           height={38}
           priority
+          className="dark:invert mb-6"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <form
+          className="w-full max-w-sm bg-white p-6 md:p-10 rounded-xl dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+          onSubmit={handleSubmit}
+        >
+          <h2 className="text-xl font-semibold text-center mb-4 text-gray-800 dark:text-white">
+            Acesse sua conta
+          </h2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <label className="flex items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-300">
+            Número do seu CPF <small className="text-slate-400">(somente números)</small>
+          </label>
+          <input
+            type="text"
+            name="cpf"
+            placeholder="Ex: 352410140"
+            value={formData.cpf}
+            onChange={handleChange}
+            className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+            required
+          />
+
+          <label className="block mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Senha
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+            required
+          />
+
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold p-3 rounded-lg flex justify-center items-center"
+            disabled={isLoading}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            {isLoading ? "Entrando..." : "Entrar"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
