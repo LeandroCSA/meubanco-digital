@@ -22,10 +22,9 @@ export const useFilteredTransactions = (transactions: Transaction[]) => {
   }, []);
 
   // Debounce para evitar chamadas excessivas na busca
-  const debouncedSearch = useCallback(
-    debounce((query: string) => setSearchQuery(query), 500),
-    []
-  );
+  const debouncedSearch = useMemo(() => {
+    return debounce((query: string) => setSearchQuery(query), 500);
+  }, []);
 
   const filteredTransactions = useMemo(() => {
     return transactions.filter(

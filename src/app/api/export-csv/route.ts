@@ -27,7 +27,16 @@ export async function GET() {
       },
     });
 
-  } catch (error:any) {
-    return NextResponse.json({ error: "Erro ao exportar CSV", details: error.message }, { status: 500 });
+  }  catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: "Erro ao exportar CSV", details: error.message },
+        { status: 500 }
+      );
+    }
+    return NextResponse.json(
+      { error: "Erro desconhecido ao exportar CSV" },
+      { status: 500 }
+    );
   }
 }
