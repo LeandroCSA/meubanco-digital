@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { Parser } from "json2csv";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Buscar os dados da API externa
     const response = await fetch("https://67982974c2c861de0c6f0321.mockapi.io/api/v1/transactions");

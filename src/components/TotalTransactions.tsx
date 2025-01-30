@@ -1,7 +1,7 @@
 // src/components/TotalTransactions.tsx
 import React, { useMemo } from "react";
 import { Currency } from "@/helpers";
-import { HiOutlineArrowDownLeft, HiOutlineArrowDownRight, HiOutlineArrowUpRight } from "react-icons/hi2";
+import { HiOutlineArrowDownLeft, HiOutlineArrowUpRight } from "react-icons/hi2";
 
 interface Transaction {
   id: string;
@@ -68,4 +68,5 @@ const TotalTransactions: React.FC<TotalTransactionsProps> = React.memo(({ curren
   );
 });
 
+TotalTransactions.displayName = "TotalTransactions";
 export default TotalTransactions;

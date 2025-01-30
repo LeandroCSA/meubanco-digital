@@ -102,4 +102,5 @@ const TransactionItem: React.FC<TransactionItemProps> = React.memo(
   }
 );
 
+TransactionItem.displayName = "TransactionItem";
 export default TransactionItem;

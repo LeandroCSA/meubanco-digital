@@ -1,14 +1,13 @@
 "use client";
 import { useAuth } from "@/providers/AuthProvider";
 import SidebarMenu from "@/components/SidebarMenu";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
   const pathname = usePathname();
-  const router = useRouter();
   const isLoginPage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,7 +25,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
     if (!isAuthenticated) {
       setIsMenuOpen(false);
     }
-  }, [pathname]); // 🚀 Fecha quando a página muda
+  }, [pathname, isAuthenticated]); // 🚀 Fecha quando a página muda
 
   if (isLoginPage) {
     return <main className="flex-1 bg-white dark:bg-black">{children}</main>;

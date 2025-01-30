@@ -21,13 +21,6 @@ export default function Login() {
     <div className="flex flex-col md:flex-row min-h-screen w-full bg-gray-100 dark:bg-gray-900">
       {/* Seção de imagem - visível apenas em telas médias e grandes */}
       <div className="hidden md:flex md:w-1/2 lg:w-3/5 bg-gradient-to-br from-[#01D2C7] to-[#74C365] items-center justify-center">
-        {/* <Image
-          src="/login-illustration.svg"
-          alt="Ilustração de Login"
-          width={500}
-          height={500}
-          className="max-w-full h-auto"
-        /> */}
       </div>
 
       {/* Seção de login */}

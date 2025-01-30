@@ -5,10 +5,22 @@ import { useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
+interface Transaction {
+  id: string;
+  type: "deposit" | "payment" | "invoice" | "withdrawal";
+  createdAt: string;
+  description: string;
+  contact_name: string;
+  contact_email: string;
+  value: string;
+  pin?: string;
+  origin?: string;
+}
+
 export default function useExportPDF() {
   const [loading, setLoading] = useState(false);
 
-  const exportToPDF = async (transaction: any) => {
+  const exportToPDF = async (transaction: Transaction) => {
     setLoading(true);
     try {
       const doc = new jsPDF();
@@ -19,10 +31,10 @@ export default function useExportPDF() {
         startY: 30,
         head: [["Campo", "Valor"]],
         body: [
-          ["ID", `#${transaction.pin}`],
+          ["ID", `#${transaction.pin || "N/A"}`], // Prevenção contra undefined
           ["Nome", transaction.contact_name],
           ["Email", transaction.contact_email],
-          ["Origem", transaction.origin],
+          ["Origem", transaction.origin || "N/A"],
           ["Valor", transaction.value],
           ["Data", transaction.createdAt],
           ["Tipo", transaction.type],

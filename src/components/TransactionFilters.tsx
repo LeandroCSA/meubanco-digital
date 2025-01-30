@@ -1,7 +1,7 @@
 // src/components/TransactionFilters.tsx
 "use client"
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { TbFilter, TbFilterX } from "react-icons/tb";

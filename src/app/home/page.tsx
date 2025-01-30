@@ -36,7 +36,6 @@ export default function Home() {
   const [copiedText, copy] = useCopyToClipboard()
   const {
     paginatedTransactions,
-    setItemsPerPage,
   } = useFilteredTransactions(transactions);
 
   const [viewAmount, setViewAmount] = useState(true)
@@ -66,7 +65,7 @@ export default function Home() {
               0300
               <IoCopyOutline size={14} />
               <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute w-28 mt-12 bg-white text-gray-800 border border-gray-300 rounded-lg shadow-lg py-1 z-10">
-                <small>copiar agência</small>
+                <small>{copiedText && 'copiado'}copiar agência</small>
               </div>
             </button>
           </div>

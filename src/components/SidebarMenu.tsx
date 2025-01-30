@@ -35,7 +35,9 @@ export default function SidebarMenu({ closeMenu }: SidebarMenuProps) {
                   proj === item.link && "text-[#01D2C7] border-[#01D2C7]"
                 }`}
                 onClick={() => {
-                  closeMenu && setTimeout(closeMenu, 100);
+                  if (closeMenu) {
+                    setTimeout(closeMenu, 100);
+                  }
                 }}
               >
                 {item.icon} {item.label}

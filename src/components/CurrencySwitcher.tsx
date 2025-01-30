@@ -10,8 +10,8 @@ const CurrencySwitcher = ({
   currentCurrency: "brl" | "usd";
   setCurrentCurrency: (currency: "brl" | "usd") => void;
 }) => {
-  let realActive = currentCurrency === "brl" ? true : false;
-  let dollarActive = currentCurrency !== "brl" ? true : false;
+  const realActive = currentCurrency === "brl" ? true : false;
+  const dollarActive = currentCurrency !== "brl" ? true : false;
 
   return (
     <div className="flex gap-2">
