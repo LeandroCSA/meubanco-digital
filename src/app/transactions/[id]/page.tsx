@@ -27,7 +27,8 @@ export default async function TransactionDetail({
 }: {
   params: { id: string };
 }) {
-  const { id } = params;
+  
+  const id = params.id;
 
   const transaction = await fetch(
     `https://67982974c2c861de0c6f0321.mockapi.io/api/v1/transactions/${id}`
