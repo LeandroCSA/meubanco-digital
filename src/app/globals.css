@@ -25,9 +25,31 @@ html {
 }
 
 body {
-  /* color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif; */
-
   font-family: var(--font-geist-sans);
+}
+
+.input-forms {
+  @apply 
+  w-full
+  rounded-md
+  font-semibold
+  border
+  focus:ring-4
+  transition-all ease-linear
+  placeholder:text-slate-400 placeholder:italic
+  focus:ring-teal-400/25 focus:border-teal-400 focus:outline focus:outline-teal-400
+  bg-white text-slate-900 border-slate-300 hover:border-slate-400 
+  dark:bg-slate-700 dark:text-white dark:border-slate-600 dark:hover:border-slate-500  
+}
+
+.button-form {
+  @apply
+    w-full
+    mt-6 p-4
+    font-semibold
+    rounded-md
+    flex justify-center items-center
+    text-white
+    bg-[#0D1C2E] hover:bg-[#1a2738]
+    dark:bg-[#6e7782] dark:hover:bg-[#3d4958]
 }

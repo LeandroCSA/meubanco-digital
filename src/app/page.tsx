@@ -50,7 +50,7 @@ export default function Login() {
             placeholder="Ex: 352410140"
             value={formData.cpf}
             onChange={handleChange}
-            className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="input-forms p-3 mt-1"
             required
           />
 
@@ -62,7 +62,7 @@ export default function Login() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="input-forms p-3 mt-1"
             required
           />
 
@@ -70,7 +70,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold p-3 rounded-lg flex justify-center items-center"
+            className="button-form"
             disabled={isLoading}
           >
             {isLoading ? "Entrando..." : "Entrar"}

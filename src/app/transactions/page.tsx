@@ -2,30 +2,22 @@
 "use client"
 
 import { GrHomeRounded } from "react-icons/gr";
-import { TbFilterX } from "react-icons/tb";
 import { useTransactions } from "@/providers/TransactionsProvider";
 import { useFilteredTransactions } from "@/hooks/useTransactions";
 import Pagination from "@/components/Pagination";
 import Breadcrumb from "@/components/Breadcrumb";
-import ErrorFilter from "@/components/ErrorFilter";
 import TransactionsList from "@/components/TransactionsList";
 import TotalTransactions from "@/components/TotalTransactions";
-// import TransactionFilters from "@/components/TransactionFilters";
 import { SkeletonItem, SkeletonTotalTransactions } from "@/components/Skeletons";
 
 export default function TransactionsPage() {
-  const { transactions, loading } = useTransactions();
+  const { transactions, loading, isChange } = useTransactions();
   const {
+    paginatedTransactions,
     filteredTransactions,
-    // searchQuery,
-    // setSearchQuery,
-    // dateFilter,
-    // setDateFilter,
     itemsPerPage,
     currentPage,
     setCurrentPage,
-    // applyFilters,
-    // isFiltering,
     currentCurrency,
     dollar
   } = useFilteredTransactions(transactions);
@@ -54,22 +46,16 @@ export default function TransactionsPage() {
 
       {loading ? (
         Array.from({ length: 6 }).map((_, index) => <SkeletonItem key={index} />)
-      ) : filteredTransactions.length === 0 ? (
-        <ErrorFilter
-          errorTitle="Nenhuma transação encontrada"
-          errorMessage="Tente remover os filtros ou cadastre uma nova transação."
-        >
-          <TbFilterX size={48} className="text-gray-400 mb-4" />
-        </ErrorFilter>
       ) : (
-        <TransactionsList />
+        <TransactionsList paginatedTransactions={paginatedTransactions} />
       )}
 
+      {!isChange && (
       <Pagination
         currentPage={currentPage}
-        totalPages={Math.ceil(filteredTransactions.length / itemsPerPage)}
+        totalPages={Math.max(1, Math.ceil(filteredTransactions.length / itemsPerPage))}
         setCurrentPage={setCurrentPage}
-      />
+      />)}
     </div>
   );
 }

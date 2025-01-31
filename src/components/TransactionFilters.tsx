@@ -7,6 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { TbFilter, TbFilterX } from "react-icons/tb";
 import { IoCloseCircle } from "react-icons/io5";
 import { debounce } from "lodash";
+import ButtonIconSimple from "./ButtonIconSimple";
 
 interface TransactionFiltersProps {
   dateFilter: string;
@@ -75,23 +76,23 @@ const TransactionFilters: React.FC<TransactionFiltersProps> = ({
           type="date"
           value={tempDateFilter}
           onChange={(e) => setTempDateFilter(e.target.value)}
-          className="p-2 border rounded"
+          className="input-forms p-2 text-small"
         />
-        <button
+        <ButtonIconSimple
+          label={"Filtrar"}
+          isLoading={isFiltering}
           onClick={handleApplyDateFilter}
-          className="flex items-center gap-3 px-3 py-2 border rounded-md bg-white hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-700"
-          disabled={isFiltering || !tempDateFilter} // Evita filtrar se não houver data
         >
-          {isFiltering ? "Filtrando..." : <><TbFilter size={16} /> Filtrar</>}
-        </button>
+          <TbFilter size={16} />
+        </ButtonIconSimple>
 
         {dateFilter && ( // Agora o botão "Limpar" só aparece quando há um filtro aplicado
-          <button
+          <ButtonIconSimple
+            label={"Limpar"}
             onClick={handleClearDateFilter}
-            className="flex items-center gap-3 px-3 py-2 border rounded-md bg-white hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-700"
           >
-            <TbFilterX size={16} /> Limpar
-          </button>
+            <TbFilterX size={16} />
+          </ButtonIconSimple>
         )}
       </div>
 
@@ -102,26 +103,27 @@ const TransactionFilters: React.FC<TransactionFiltersProps> = ({
           ref={inputRef}
           onChange={handleInputChange}
           placeholder="Busque por nome, e-mail ou descrição..."
-          className="p-2 border rounded w-full pr-10"
+          className="input-forms p-2 text-small pr-10"
         />
 
-        <div className="absolute right-3 top-2 text-gray-500">
+        <div className="absolute right-3 top-3 text-gray-500">
           {isSearching ? (
             <AiOutlineLoading3Quarters className="animate-spin" />
           ) : searchQuery.length > 0 ? (
-            <IoCloseCircle className="cursor-pointer text-red-500" onClick={handleClearSearch} />
+            <IoCloseCircle size={18} className="cursor-pointer text-red-500" onClick={handleClearSearch} />
           ) : (
-            <FiSearch />
+            <FiSearch size={18} />
           )}
         </div>
+
+        {/* Mensagem Temporária ao Limpar a Busca */}
+        {showResetMessage && (
+          <p className="text-teal-500 absolute text-sm dark:text-gray-300 bottom-1.5 left-1 p-1 bg-white dark:bg-slate-700 w-[85%]">
+            Resultados restaurados.
+          </p>
+        )}
       </div>
 
-      {/* Mensagem Temporária ao Limpar a Busca */}
-      {showResetMessage && (
-        <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">
-          Resultados restaurados.
-        </p>
-      )}
     </div>
   );
 };

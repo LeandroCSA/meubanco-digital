@@ -48,7 +48,7 @@ const transactionType = (key: string) => {
 const TransactionItem: React.FC<TransactionItemProps> = React.memo(
   ({ currency, dollar, transaction }) => {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-[0.5fr_1fr_1fr_auto] gap-4 md:gap-6 items-center p-5  bg-white hover:bg-slate-50 border-dashed border-b border-slate-200 dark:bg-slate-900 dark:border-slate-700 last:border-none">
+      <div className="grid grid-cols-1 md:grid-cols-[0.5fr_1fr_1fr_auto] gap-4 md:gap-6 items-center p-5 bg-white hover:bg-slate-50 border-dashed border-b border-slate-200 dark:bg-slate-900 dark:border-slate-700 last:border-none">
         {/* Link para detalhes da transação */}
         <Link
           href={`/transactions/${transaction.id}`}

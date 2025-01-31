@@ -1,11 +1,10 @@
 "use client"
 
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import Image from "next/image";
 import { CgMoreVerticalAlt } from "react-icons/cg";
 import { HiOutlineArrowDownLeft, HiOutlineArrowUpRight } from "react-icons/hi2";
-import { IoCopyOutline } from "react-icons/io5";
-import { RiEyeLine, RiEyeOffLine, RiVisaLine } from 'react-icons/ri';
+import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useTransactions } from "@/providers/TransactionsProvider";
 import { useFilteredTransactions } from '@/hooks/useTransactions';
 import { CiVault } from 'react-icons/ci';
@@ -17,6 +16,8 @@ import { PiArrowsDownUp } from 'react-icons/pi';
 import ButtonIconSimple from '@/components/ButtonIconSimple';
 import ButtonLinkSimple from '@/components/ButtonLinkSimple';
 import { SkeletonItemHome } from '@/components/Skeletons';
+import CopyTextButton from '@/components/CopyTextButton';
+import CreditCardSection from '@/components/CreditCardSection';
 
 const getCurrentDateTime = (withTime: boolean = true) => {
   const now = new Date();
@@ -32,23 +33,9 @@ const getCurrentDateTime = (withTime: boolean = true) => {
 };
 
 export default function Home() {
-  const { transactions, loading } = useTransactions();
-  const [copiedText, copy] = useCopyToClipboard()
-  const {
-    paginatedTransactions,
-  } = useFilteredTransactions(transactions);
-
+  const {transactions, loading} = useTransactions();
+  const {paginatedTransactions} = useFilteredTransactions(transactions);
   const [viewAmount, setViewAmount] = useState(true)
-
-  const handleCopy = (text: string) => () => {
-    copy(text)
-      .then(() => {
-        console.log('Copied!', { text })
-      })
-      .catch(error => {
-        console.error('Failed to copy!', error)
-      })
-  }
 
   return (
     <div className="w-full h-full overflow-y-auto p-6 md:p-10">
@@ -61,22 +48,10 @@ export default function Home() {
 
         <div className="mt-2 flex gap-2 md:gap-4 items-center z-10">
           <div className="flex items-center gap-1">
-            Agência: <button onClick={handleCopy('0300')} className="relative group px-2 py-1 w-auto flex items-center gap-2 rounded-md border border-slate-300 hover:bg-slate-100 text-[11px] md:text-sm">
-              0300
-              <IoCopyOutline size={14} />
-              <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute w-28 mt-12 bg-white text-gray-800 border border-gray-300 rounded-lg shadow-lg py-1 z-10">
-                <small>{copiedText && 'copiado'}copiar agência</small>
-              </div>
-            </button>
+            Agência: <CopyTextButton text="0300" field="agencia" label="Copiar agência" />
           </div>
           <div className="flex items-center gap-1">
-            Conta: <button onClick={handleCopy('000035712-8')} className="relative group px-2 py-1 w-auto flex items-center gap-2 rounded-md border border-slate-300 hover:bg-slate-100 text-[11px] md:text-sm">
-              000035712-8
-              <IoCopyOutline size={14} />
-              <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute w-28 mt-12 bg-white text-gray-800 border border-gray-300 rounded-lg shadow-lg py-1 z-10">
-                <small>copiar conta</small>
-              </div>
-            </button>
+            Conta: <CopyTextButton text="000035712-8" field="conta" label="Copiar conta" />
           </div>
         </div>
       </div>
@@ -107,34 +82,15 @@ export default function Home() {
             <p className="font-semibold mt-6 bg-green-100 flex w-auto py-3 px-4 rounded-md items-center gap-2 text-slate-900 dark:text-lime-500 dark:bg-slate-900"><BsFire /> Limite da Conta disponível R$ 3.000,00</p>
           </section>
 
-          <section className="grid border border-slate-200 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800">
-            <div className="p-4 flex justify-between items-center">
-              <p>Cartão de crédito</p>
-              <ButtonLinkSimple label='Acessar cartão' />
-            </div>
-            <div className="p-6 text-white w-full relative h-48 grid content-between bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-500 via-teal-500 to-green-400">
-              <RiVisaLine size={50} className='absolute top-2 right-6' />
-              <strong>Leandro C S Almeida</strong>
-              <div className="absolute left-0 bottom-0 w-full flex items-center gap-6 p-6 border-t border-white border-opacity-20 mt-06 bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 backdrop-saturate-100 backdrop-contrast-100 bg-[url('data:image/svg+xml;base64,CiAgICAgIDxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpzdmdqcz0iaHR0cDovL3N2Z2pzLmRldi9zdmdqcyIgdmlld0JveD0iMCAwIDcwMCA3MDAiIHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBvcGFjaXR5PSIwLjQ0Ij4KICAgICAgICA8ZGVmcz4KICAgICAgICAgIDxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgogICAgICAgICAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4xMTYiIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjE1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJlc3VsdD0idHVyYnVsZW5jZSI+PC9mZVR1cmJ1bGVuY2U+CiAgICAgICAgICAgIDxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSIxOCIgc3BlY3VsYXJDb25zdGFudD0iMC43IiBzcGVjdWxhckV4cG9uZW50PSIyMCIgbGlnaHRpbmctY29sb3I9IiM3OTU3QTgiIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaW49InR1cmJ1bGVuY2UiIHJlc3VsdD0ic3BlY3VsYXJMaWdodGluZyI+CiAgICAgICAgICAgICAgPGZlRGlzdGFudExpZ2h0IGF6aW11dGg9IjMiIGVsZXZhdGlvbj0iMTAwIj48L2ZlRGlzdGFudExpZ2h0PgogICAgICAgICAgICA8L2ZlU3BlY3VsYXJMaWdodGluZz4KICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBpbj0ic3BlY3VsYXJMaWdodGluZyIgcmVzdWx0PSJjb2xvcm1hdHJpeCI+PC9mZUNvbG9yTWF0cml4PgogICAgICAgICAgPC9maWx0ZXI+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ0cmFuc3BhcmVudCI+PC9yZWN0PgogICAgICAgIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjNzk1N2E4IiBmaWx0ZXI9InVybCgjbm5ub2lzZS1maWx0ZXIpIj48L3JlY3Q+CiAgICAgIDwvc3ZnPgogICAg')] bg-blend-overlay">
-                <small>•••• •••• •••• 7645</small>
-                <small>07/33</small>
-              </div>
-            </div>
-            <div className="grid md:flex gap-0 md:gap-8 w-full p-0 md:p-6">
-              <p className="grid border-b md:border-r md:border-b-0 border-slate-200 pr-0 md:pr-8 text-lg dark:border-slate-800 p-3">
-                <small className="text-slate-400">Limite do cartão disponível:</small>
-                <b>R$ {viewAmount ? "6.000,00" : "••••••"}</b>
-              </p>
-              <p className="grid border-b md:border-r md:border-b-0 border-slate-200 pr-0 md:pr-8 text-lg dark:border-slate-800 p-3">
-                <small className="text-slate-400">Fatura em aberto:</small>
-                <b>R$ {viewAmount ? "1.350,00" : "••••••"}</b>
-              </p>
-              <p className="grid text-lg p-3">
-                <small className="text-slate-400">Data de fechamento:</small>
-                <b>25/01</b>
-              </p>
-            </div>
-          </section>
+          <CreditCardSection
+            name="Leandro C S Almeida"
+            cardNumber="7645"
+            expiry="07/33"
+            availableLimit="6.000,00"
+            outstandingBalance="1.350,00"
+            closingDate="25/01"
+            viewAmount={viewAmount}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <section className="grid bg-teal-50 border-0 border-teal-500 p-6 md:p-8 rounded-xl gap-6 dark:bg-slate-900 dark:border-teal-900">
@@ -198,51 +154,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-
-type CopiedValue = string | null
-
-type CopyFn = (text: string) => Promise<boolean>
-
-function useCopyToClipboard(): [CopiedValue, CopyFn] {
-  const [copiedText, setCopiedText] = useState<CopiedValue>(null)
-
-  const copy: CopyFn = useCallback(async text => {
-    if (!navigator?.clipboard) {
-      console.warn('Clipboard not supported')
-      return false
-    }
-
-    // Try to save to clipboard then save it in the state if worked
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopiedText(text)
-      return true
-    } catch (error) {
-      console.warn('Copy failed', error)
-      setCopiedText(null)
-      return false
-    }
-  }, [])
-
-  return [copiedText, copy]
-}
-
-{/* 
-<section className="grid bg-slate-50 border border-slate-200 p-8 rounded-xl">
-  <p>
-  Empréstimo Pessoal: R$ 3.000,00<br />
-    Valores pré-aprovados<br />
-    Link Simular
-  </p>
-</section> */}
-
-
-{/*
-<p>
-  Empréstimo Pessoal: R$ 3.000,00<br />
-  Valores pré-aprovados<br />
-  Link Simular
-</p> */}

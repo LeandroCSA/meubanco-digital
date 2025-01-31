@@ -19,6 +19,8 @@ export interface Transaction {
 interface TransactionContextType {
   transactions: Transaction[];
   loading: boolean;
+  isChange: boolean;
+  setIsChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TransactionContext = createContext<TransactionContextType | undefined>(undefined);
@@ -26,6 +28,7 @@ const TransactionContext = createContext<TransactionContextType | undefined>(und
 export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -43,7 +46,7 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, []);
 
   return (
-    <TransactionContext.Provider value={{ transactions, loading }}>
+    <TransactionContext.Provider value={{ transactions, loading, isChange, setIsChange }}>
       {children}
     </TransactionContext.Provider>
   );

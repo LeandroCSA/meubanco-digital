@@ -9,6 +9,7 @@ interface ButtonIconSimpleProps {
   onClick?: () => Promise<void> | void;
   isLoading?: boolean;
   active?: boolean;
+  disabled?: boolean;
 }
 
 const ButtonIconSimple: React.FC<ButtonIconSimpleProps> = ({
@@ -16,6 +17,7 @@ const ButtonIconSimple: React.FC<ButtonIconSimpleProps> = ({
   label,
   onClick,
   active,
+  disabled,
   isLoading = false
 }) => {
   const [loading, setLoading] = useState(false);
@@ -36,6 +38,7 @@ const ButtonIconSimple: React.FC<ButtonIconSimpleProps> = ({
       type="button"
       onClick={handleClick}
       className={`flex items-center gap-1 text-sm md:text-base md:gap-3 ${!label && 'w-10'} px-3 py-2 h-10 rounded-md border ${ active ? 'border-teal-400 text-teal-400 dark:border-teal-400 dark:bg-slate-700' : 'border-slate-300 bg-white hover:bg-slate-50 dark:border-slate-600 dark:hover:bg-slate-600 dark:bg-slate-700 dark:border-0'} `}
+      disabled={disabled}
     >
       {loading || isLoading ? (
         <>
