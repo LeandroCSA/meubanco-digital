@@ -42,6 +42,9 @@ export default function useExportPDF() {
         ],
       });
 
+      doc.text("Comprovante gerado por MeuBanco Digital.", 14, 110);
+      doc.setFontSize(6);
+
       doc.save(`Transacao-${transaction.pin}.pdf`);
     } catch (error) {
       console.error("Erro ao exportar PDF:", error);

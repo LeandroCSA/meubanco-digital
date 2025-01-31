@@ -118,6 +118,7 @@ export default async function TransactionDetail(
           transaction={transaction}
         />
       </section>
+      <small>Comprovante gerado por MeuBanco Digital.</small>
     </div>
   );
 }
