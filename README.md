@@ -128,6 +128,8 @@ Também foi implementada a proteção de rotas privadas como Home (detalhes da c
 
 O Usuário estando logado e tentar acessar a página de login, será redirecionado para a página Home, e caso o usuário não esteja logado e tentar acessar qualquer página sem ser a de Login, será redirecionado para a página Login para fazer a validação de dados.
 
+Para a lista de transações na página Home e na página de Transações, foi inserido recursos de Skeleton para trazer uma maior experiência ao usuário no aguardo do carregamento das informações, mas o processo é tão rápido que as vezes fica imperceptível. Para visualiza-los é necessário, por exemplo, estar na página de Transações e dar um refresh com Ctrl + R para vê-lo.
+
 ## Features futuras
 
 - Autocomplete na busca da página de Transações
