@@ -2,7 +2,6 @@ import Breadcrumb from "@/components/Breadcrumb";
 import CopyCodeButton from "@/components/CopyCodeButton";
 import Image from "next/image";
 import { GrHomeRounded } from "react-icons/gr";
-import { IoCopyOutline } from "react-icons/io5";
 
 export default function Home() {
   return (
