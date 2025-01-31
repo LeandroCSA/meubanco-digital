@@ -7,12 +7,26 @@ O escopo do projeto consiste em criar um banco digital, apresentando as informa�
 
 Como tecnologia, foi escolhido para utilizar o framework [Next.js](https://nextjs.org) que pode ser inicializado com o comando [`npx create-next-app@latest`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-No caso deste projeto, basta clonar este repositório [`Ver documentação`](https://cli.github.com/)
+No caso deste projeto, basta clonar este repositório via Github CLI
 
 ```bash
 gh repo clone LeandroCSA/meubanco-digital
 ```
-## Getting Started
+
+Clonar via SSH
+
+```bash
+git@github.com:LeandroCSA/meubanco-digital.git
+```
+
+Clonar via HTTPS
+```bash
+https://github.com/LeandroCSA/meubanco-digital.git
+```
+
+Ver documentação: (https://cli.github.com/)
+
+## Começando
 
 Após clonar o repositório rode os seguintes comandos no servidor de desenvolvimento:
 
@@ -74,6 +88,9 @@ Para acessar basta usar as credenciais de **CPF:** 12345678900 e **Senha:** pass
 
 
 ##### Consumo de API
+
+Link da API: https://67982974c2c861de0c6f0321.mockapi.io/api/v1/transactions
+Com total de 60 registros gerados de forma automática.
 
 O consumo dos dados das transações esta sendo feita através da API pública como https://mockapi.io/ para gerar dados fictícios. 
 
