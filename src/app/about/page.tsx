@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
+import CopyCodeButton from "@/components/CopyCodeButton";
 import Image from "next/image";
 import { GrHomeRounded } from "react-icons/gr";
 import { IoCopyOutline } from "react-icons/io5";
@@ -30,88 +31,24 @@ export default function Home() {
             <li className="grid gap-1 p-4 bg-gray-50 border border-gray-100 rounded-md dark:bg-slate-800 dark:border-slate-700 justify-start">
               <b>React Icons:</b>
               <span>FBiblioteca com ícones SVG prontos para uso, usados na interface do usuário.</span>
-              
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">react-icons --save</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
-
-              {/* <small>npm install react-icons --save</small> */}
+              <CopyCodeButton text={"npm install react-icons --save"} field="react-icons --save"/>
             </li>
             <li className="grid gap-1 p-4 bg-gray-50 border border-gray-100 rounded-md dark:bg-slate-800 dark:border-slate-700">
               <b>Lodash:</b>
               <span>Biblioteca de utilitários para otimizar funções como debounce, throttle, cloneDeep, entre outras.</span>
-              
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">lodash</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
-
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">--save-dev @types/lodash</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
-
+              <CopyCodeButton text={"npm install lodash"} field="lodash"/>
+              <CopyCodeButton text={"npm install --save-dev @types/lodash"} field="--save-dev @types/lodash"/>
             </li>
             <li className="grid gap-1 p-4 bg-gray-50 border border-gray-100 rounded-md dark:bg-slate-800 dark:border-slate-700">
               <b>json2csv:</b>
-              <span>Dependência json2csv serve....</span>
-              
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">json2csv</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
-
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">--save-dev @types/json2csv</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
+              <span>Biblioteca que converte de forma otimizada dados JSON em CSV.</span>
+              <CopyCodeButton text={"npm install json2csv"} field="json2csv"/>
+              <CopyCodeButton text={"npm install --save-dev @types/json2csv"} field="--save-dev @types/json2csv"/>
             </li>
             <li className="grid gap-1 p-4 bg-gray-50 border border-gray-100 rounded-md dark:bg-slate-800 dark:border-slate-700">
               <b>jsPDF + jsPDF AutoTable:</b>
               <span>Biblioteca para geração de arquivos PDF, utilizada na exportação de transações. Extensão do jspdf para gerar tabelas formatadas automaticamente nos PDFs.</span>
-              <code className="text-sm sm:text-base inline-flex text-left items-center space-x-3 bg-gray-800 hover:bg-gray-900 cursor-pointer text-white rounded-lg py-2 px-4 w-fit group mt-2 dark:bg-slate-900 dark:hover:bg-slate-950">
-                <span className="flex gap-4">
-                  <span className="shrink-0 text-gray-500">$</span>
-                  <span className="flex-1">
-                    <small>npm install </small>
-                    <small className="text-yellow-500">jspdf jspdf-autotable</small>
-                  </span>
-                </span>
-                <IoCopyOutline size={18} className="text-gray-400 group-hover:text-gray-100" />
-              </code>
-              {/* <small>npm install jspdf jspdf-autotable</small> */}
-              {/* <small>npm i --save-dev @types/lodash</small> */}
+              <CopyCodeButton text={"npm install jspdf jspdf-autotable"} field="jspdf jspdf-autotable"/>
             </li>
           </ul>
         </div>
