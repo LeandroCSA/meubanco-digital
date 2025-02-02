@@ -86,6 +86,7 @@ A autenticação para acessar as páginas através do uso de um formulário de l
 
 Para acessar basta usar as credenciais de **CPF:** 12345678900 e **Senha:** password
 
+Não foi implementada a página de recuperar senha,que será implementada futuramente.
 
 ##### Consumo de API
 
@@ -94,10 +95,11 @@ Com total de 60 registros gerados de forma automática.
 
 O consumo dos dados das transações esta sendo feita através da API pública como https://mockapi.io/ para gerar dados fictícios. 
 
-Por conta disso, algumas informações não temos controle da forma e formato que são gerados. Um erro que foi detectado é que os avatares e fotos de perfil não estão sendo apresentados de forma correta na própria API, então para contornar a situação optei por utilizar uma outra api pública que gera as fotos de avatares, a API https://i.pravatar.cc/150 onde eu posso parrar um parâmetro `?img=xxx` e esse xxx pode ser o **ID da transação** para gerar fotos diferentes e não ser sempre a mesma foto na lista inteira.
+Por conta disso, algumas informações não temos controle da forma e formato que são gerados. Um erro que foi detectado é que os avatares e fotos de perfil não estão sendo apresentados de forma correta na própria API, então para contornar a situação optei por utilizar uma outra api pública que gera as fotos de avatares, a API https://i.pravatar.cc/150 onde eu posso passar um parâmetro `?img=xxx` e esse xxx pode ser o **ID da transação** para gerar fotos diferentes e não ser sempre a mesma foto na lista inteira.
 
 Contudo essa implementação pode gerar algumas informações estranhas como a foto de uma pessoa de gênero feminino com nome de pessoa de gênero masculino, e vice-versa.
 
+Outro fato é que as informaçõesdec datasóp possuem 2 dias para a busca, que seriam dia 28/01/2025 e 27/01/2025. Esses são os dois únicos dias que foram gerados pela API, na busca pela data.
 
 ## Features atuais (com o escopo do projeto e outroas não)
 
@@ -136,6 +138,8 @@ Para a lista de transações na página Home e na página de Transações, foi i
 - Compartilhar dados da transação
 - Enviar e Receber pagamento/dinheiro
 - Tela de perfil do usuário
+- Tela de configurações e segurança
+- Tela de redefinir senha
 - Notificações
 - Pwa
 - Implementação de Banco de Dados
